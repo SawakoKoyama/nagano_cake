@@ -4,12 +4,109 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+       <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+          <% if admin_signed_in? %>
+              <li class="nav-item">
+              <%= link_to "Nagano Cake", class: 'nav-link text-dark' %>
+              </li>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                </ul>
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                        <%= link_to "商品一覧", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to "会員一覧", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to "注文履歴一覧", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to "ジャンル一覧", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                      </li>
+                    </ul>
+                  </div>
+
+           <% elsif customer_signed_in?%>
+              <li class="nav-item">
+              <%= link_to "Nagano Cake", class: 'nav-link text-dark' %>
+              </li>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                </ul>
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                         <%= link_to "マイページ", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                         <%= link_to "商品一覧", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                         <%= link_to "カート", new_customer_registration_path, class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+                      </li>
+                    </ul>
+                  </div>
+          <% else %>
+              <li class="nav-item">
+              <%= link_to "Nagano Cake", class: 'nav-link text-dark' %>
+              </li>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                </ul>
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                         <%= link_to "about", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                         <%= link_to "商品一覧", class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                         <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+                      </li>
+                      <li class="nav-item">
+                         <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+                      </li>
+                    </ul>
+                  </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
+
