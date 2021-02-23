@@ -3,17 +3,18 @@ Rails.application.routes.draw do
     resources :addresses
   end
   namespace :public do
-    resources :orders
     post 'orders/confirm'
     get 'orders/complete'
+    resources :orders
+    
   end
   namespace :public do
-    resources :customers
     get 'customers/unsubscribe'
+    resources :customers
   end
   namespace :public do
-    get 'cart_items/index'
-    post 'cart_items/create'
+    delete 'cart_items/destroy_all'
+    resources :cart_items
   end
   namespace :public do
     resources :items

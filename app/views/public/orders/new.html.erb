@@ -8,11 +8,18 @@
 
 
 <h2>お届け先</h2>
-ご自身の住所
-<%#<%= @customer.address %>
-登録住所から選択
+<%= form_tag(controller: "orders", action: "new") do %>
 
-新しいお届け先
+<%= radio_button_tag("r1", "radio 1") %>
+<%= label_tag("r1_radio_1", "ご自身の住所") %><br>
+<%= current_customer.address %>
+
+<%= radio_button_tag("r1", "radio 2") %>
+<%= label_tag("r1_radio_2", "登録住所から選択") %><br>
+<%= f.collection_select :address_id, @addresses, :id, :address_option %>
+
+<%= radio_button_tag("r1", "radio 2") %>
+<%= label_tag("r1_radio_2", "新しいお届け先") %><br>
 <%= form_with model: @address,url: public_addresses_path, local: true do |f| %>
   <h4>郵便番号（ハイフンなし）</h4>
   <%= f.text_field :postal_code %>
@@ -27,3 +34,5 @@
   <% end %>
 
 <% end %>
+
+<% end%>
