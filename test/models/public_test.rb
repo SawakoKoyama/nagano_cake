@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ItemGenreRelationTest < ActiveSupport::TestCase
+class PublicTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

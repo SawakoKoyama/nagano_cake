@@ -1,0 +1,14 @@
+<h2>商品一覧</h2>
+<table class="items">
+
+        <tbody>
+          <% @items.each do |item| %>
+                      <tr>
+                        <td><%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg' %></td>
+                        <td><%= link_to "#{item.name}", public_item_path(item.id) %></td>
+                        <td><%= item.price %></td>
+                      </tr>
+          <% end %>
+        </tbody>
+
+      </table>

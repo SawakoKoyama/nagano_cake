@@ -1,0 +1,48 @@
+<h1>注文履歴詳細</h1>
+
+  <h4>購入者</h4>
+  <%= @order.name %>
+  <h4>注文日</h4>
+  <%= @order.updated_at %>
+
+  <h4>配送先</h4>
+  <%= @order.address %>
+
+  <h4>支払方法</h4>
+  <%= @order.payment_method %>
+
+  <h4>注文ステータス</h4>
+  <%= select :status, :name, Order.statuses.keys.to_a, include_blank: true %>
+
+  <%= f.submit '更新する' %>
+
+
+      <table class="orders">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+                      <tr>
+                        <td><%= order.name %></td>
+                        <td><%= order.price %></td>
+                        <td><%= order.amount %></td>
+                        <td><%= order.total_payment %></td>
+                        <td><%= order.status %>
+
+                        </td>
+
+                        <td><%= f.submit '更新する' %></td>
+                        <% end %>
+                      </tr>
+          <% end %>
+        </tbody>
+      </table>
+

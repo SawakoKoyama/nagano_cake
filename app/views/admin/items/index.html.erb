@@ -18,7 +18,7 @@
           <% @items.each do |item| %>
                       <tr>
                         <td><%= item.id %></td>
-                        <td><%= link_to "#{item.name}", admin_items_path(item.id) %></td>
+                        <td><%= link_to "#{item.name}", admin_item_path(item.id) %></td>
                         <td><%= item.price %></td>
                         <td><%= item.genre.name %></td>
                         <% if item.is_active %>
@@ -30,6 +30,8 @@
           <% end %>
         </tbody>
       </table>
-
+        <%= link_to new_admin_item_path, method: :get do %>
+         <i class="fas fa-plus"></i>
+        <% end %>
     </main>
   </body>

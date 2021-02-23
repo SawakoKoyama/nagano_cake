@@ -1,0 +1,38 @@
+<head></head>
+  <body>
+    <header></header>
+    <main>
+      <h2>注文情報確認</h2>
+      <table class="items">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>送料</th>
+            <th>商品合計</th>
+            <th>請求額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+                      <tr>
+                        <td><%= order.name %></td>
+                        <td></td>
+                        <td><%= order.amount %></td>
+                        <td></td>
+                        <td><%= order.shipping_cost %></td>
+                        <td></td>
+                        <td><%= order.total_payment %></td>
+                      </tr>
+          <% end %>
+        </tbody>
+      </table>
+    　<h4>支払方法</h4>
+    　<h4>お届け先</h4>
+        <%= form_with model: @orders,url: new_public_order_path, local: true do |f| %>
+        <%= f.submit '注文を確定する' %>
+        <% end %>
+    </main>
+  </body>
