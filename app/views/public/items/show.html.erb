@@ -1,18 +1,18 @@
-
+<div class="container">
   <%= attachment_image_tag @items, :image, :fill, 100, 100, format: 'jpeg' %>
 
   <h1><%= @items.name %></h1>
 
   <h4><%= @items.introduction %></h4>
 
-  <h4>¥<%= @items.price %>（税込）</h4>
+  <h4>¥<%= ((@items.price*1.1).round(2)).ceil %>（税込）</h4>
 
 
 
   <%= form_with model: @cart_item,url: public_cart_items_path, method: :post, local: true do |f| %>
-  <%= f.select :amount, [1,2,3,4,5,6,7,8,9], class: 'sample' %>
+  <%= f.select :amount, [1,2,3,4,5,6,7,8,9], { prompt: "個数選択"}, class: 'sample' %>
   <%= f.hidden_field :item_id, :value =>@items.id %>
-  <%= f.submit 'カートに入れる' %>
+  <%= f.submit 'カートに入れる', class: "btn btn-success" %>
   <% end %>
-
+</div>
 

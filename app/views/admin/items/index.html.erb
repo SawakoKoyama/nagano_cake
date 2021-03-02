@@ -1,4 +1,4 @@
-
+<div class="container">
   <head></head>
   <body>
     <header></header>
@@ -33,5 +33,7 @@
         <%= link_to new_admin_item_path, method: :get do %>
          <i class="fas fa-plus"></i>
         <% end %>
+        <%= paginate @items %>
     </main>
   </body>
+  </div>

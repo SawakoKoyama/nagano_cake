@@ -1,40 +1,27 @@
 Rails.application.routes.draw do
   namespace :public do
     resources :addresses
-  end
-  namespace :public do
     post 'orders/confirm'
     get 'orders/complete'
     resources :orders
-    
-  end
-  namespace :public do
     get 'customers/unsubscribe'
+    patch 'customers/withdraw'
     resources :customers
-  end
-  namespace :public do
+    get 'customers/my_page' => 'customer#show'
     delete 'cart_items/destroy_all'
     resources :cart_items
-  end
-  namespace :public do
     resources :items
-  end
-  namespace :public do
     root to: 'homes#top'
     get 'homes/about'
   end
+
   namespace :admin do
     resources :orders
-  end
-  namespace :admin do
     resources :customers
-  end
-  namespace :admin do
     resources :genres
-  end
-  namespace :admin do
     resources :items
   end
+
   root to: 'admin/homes#top'
   devise_for :admins,
   path: "admin", controllers: {

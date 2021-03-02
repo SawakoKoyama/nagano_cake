@@ -1,6 +1,10 @@
 class Public::CustomersController < ApplicationController
   def show
-    @customer = Customer.find(params[:id])
+    unless params[:id] == "my_page"
+      @customer = Customer.find(params[:id])
+    else
+      @customer = Customer.find(current_customer.id)
+    end
   end
 
   def edit
@@ -15,13 +19,14 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customer = Customer.find(params[:id])
   end
 
-  def destroy
-    @customer = Customer.find(params[:id])
-    @customer.destroy
+  def withdraw
+    @customer = current_customer
+    if @customer.update(is_active: false)
+    reset_session
     redirect_to public_root_path
+    end
   end
 
 private

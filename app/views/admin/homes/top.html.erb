@@ -1,9 +1,12 @@
-
+<div class="container">
+ <div class="row">
   <head></head>
   <body>
     <header></header>
     <main>
+
       <h2>注文履歴一覧</h2>
+       <table class="table table-hover table-inverse">
       <table class="items">
         <thead>
           <tr>
@@ -16,15 +19,18 @@
         <tbody>
           <% @orders.each do |order| %>
                       <tr>
-                        <td><%= link_to "#{order.updated_at}" %></td>
+                        <td><%= link_to "#{order.updated_at.strftime("%Y/%m/%d %H:%M:%S")}", admin_order_path(order.id) %></td>
                         <td><%= order.name %></td>
-                        <td><%= order.amount %></td>
+                        <td><%= order.order_details.sum(:amount) %></td>
                         <td><%= order.status %></td>
-
                       </tr>
           <% end %>
         </tbody>
       </table>
-
+      </table>
+   </div>
     </main>
   </body>
+</div>
+</div>
+</div>
